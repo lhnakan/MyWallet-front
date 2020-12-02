@@ -73,3 +73,7 @@ button:active {
 button:focus {
 	outline: 0;
 }
+input {
+	border:none;
+	outline: none;
+}
