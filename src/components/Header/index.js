@@ -4,7 +4,6 @@ import { IoExitOutline } from 'react-icons/io5';
 import axios from 'axios';
 
 import HeaderContainer from "./HeaderForms";
-
 import UserContext from '../../context/UserContext';
 
 export default function Header() {
@@ -25,7 +24,6 @@ export default function Header() {
                 setLoading(false);
             })
     }
-    
 
     return (
         <HeaderContainer>

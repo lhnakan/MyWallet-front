@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import Container from "./addTransactionsForms";
@@ -9,6 +9,7 @@ export default function Input() {
     const { config } = useContext(UserContext);
     const [cost, setCost] = useState('');
     const [item, setItem] = useState('');
+    const [selectDate, setSelectDate] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
@@ -18,8 +19,8 @@ export default function Input() {
         if (loading) return;
         setLoading(true);
 
-        axios.post('https://mywallet-lucasn.herokuapp.com/api/transactions/output', {item, cost}, config)
-            .then(r => {
+        axios.post('https://mywallet-lucasn.herokuapp.com/api/transactions/output', {item, cost, selectDate}, config)
+            .then(() => {
                 history.push('/statement');
             })
             .catch(err => {
@@ -44,6 +45,12 @@ export default function Input() {
                     onChange={e => setItem(e.target.value)} 
                     value={item}  
                 />
+                <input 
+                    type='date' 
+                    placeholder='Data' 
+                    onChange={e => setSelectDate(e.target.value)} 
+                    value={selectDate}
+                /> 
                 <button>Salvar saida</button>
             </form>
         </Container>

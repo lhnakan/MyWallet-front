@@ -13,6 +13,5 @@ export default function TradesPreview(props) {
                 <span>{cost}</span>
             </div>
         </Trade>
-
     );
 }

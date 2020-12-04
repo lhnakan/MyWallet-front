@@ -12,8 +12,6 @@ const Trade = styled.li`
             color: ${({ type }) => (type === "input" ? 'green' : 'red' )}
         }
     }
-
-    
 `;
 
 export default Trade;

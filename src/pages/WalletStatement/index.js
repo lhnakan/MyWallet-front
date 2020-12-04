@@ -8,7 +8,6 @@ import BalanceContainer from "./WalletStatementForms";
 import Header from '../../components/Header';
 import StatementBox from '../../components/StatementBox';
 
-
 export default function WalletStatement() {
     const { config, statementList, setStatementList } = useContext(UserContext);
     

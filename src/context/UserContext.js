@@ -8,7 +8,6 @@ export function UserProvider({ children }) {
     const [user, setUser] = useLocalStorage('user', null);
     const [statementList, setStatementList] = useState(false);
     
-    
     let config;
     if(user) {
         config = {

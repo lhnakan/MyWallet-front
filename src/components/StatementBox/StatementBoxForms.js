@@ -26,7 +26,5 @@ export const TradesContainer = styled.main`
         width: 100%;
         flex-grow: 1;
     }
-    
-    
 `;
 
