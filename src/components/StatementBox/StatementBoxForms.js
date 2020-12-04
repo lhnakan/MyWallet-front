@@ -26,18 +26,3 @@ export const TradesContainer = styled.main`
     
 `;
 
-export const Trade = styled.li`    
-    display: flex;
-    margin: 10px 0;
-
-    div {
-        flex-grow: 1;
-        margin-left: 5px;
-
-        span {
-            color: ${({ type }) => (type === "entrada" ? 'green' : 'red' )}
-        }
-    }
-
-    
-`;

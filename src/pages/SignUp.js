@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import Container from '../assets/styles/loginStyles/Container';
 
 export default function SignUp() {
-    const [userName, setUserName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const history = useHistory();
 
-    function saveNewUser(){
-        alert("registrado")
+    function saveNewUser() {   
+        const newUser = {
+            username, 
+            email, 
+            password,
+            passwordConfirmation
+        }    
+
+        axios.post('http://localhost:3000/api/users/sign-up', newUser)
+            .then((r) => {
+                history.push('/')
+            })
+            .catch(err => {
+                console.log(err)
+            })            
     }
     
     return(
@@ -21,8 +36,8 @@ export default function SignUp() {
                 <input 
                     type='text'
                     placeholder='Nome' 
-                    onChange={e => setUserName(e.target.value)} 
-                    value={userName} 
+                    onChange={e => setUsername(e.target.value)} 
+                    value={username} 
                 />
                 <input 
                     type='email'
@@ -38,7 +53,7 @@ export default function SignUp() {
                 />
                 <input 
                     type='password' 
-                    placeholder='Senha' 
+                    placeholder='Confirme a senha' 
                     onChange={e => setPasswordConfirmation(e.target.value)} 
                     value={passwordConfirmation}  
                 />

@@ -10,7 +10,7 @@ const BalanceContainer = styled.div`
         border-radius: 5px;
     }
 
-    header, footer {
+    footer {
         display: flex;
         align-itens: center;
         justify-content: space-between;
@@ -29,9 +29,14 @@ const BalanceContainer = styled.div`
         padding: 30px;
     }
 
+    a {
+
+        width: 47%;
+    }
+
     button {
         font-weigth: bold;
-        width: 47%;
+        width: 100%;
         height: 30vw;
         display: flex;
         flex-direction: column;

@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import FinancialContext from '../../context/FinancialContext';
+import { TradesContainer } from './StatementBoxForms';
 
-import { TradesContainer, Trade } from './StatementBoxForms';
+import TradesPreview from '../TradesPreview';
 
-// import TradesPreview from '../components/TradesPreview';
+export default function StatementBox() {    
+    const { statementList } = useContext(FinancialContext);
 
-export default function StatementBox() {
-    const [finalBalance, setFinalBalance] = useState(0)
-
-    
-    const product = 'Gasto Aleatorio'
-    const value = 350.00
-    const type = 'entrada'
-    useEffect(() => {
-        setFinalBalance(finalBalance + value)
-    }, []); 
-
+    let finalBalance = 0;
+    let total = 0;
+    statementList.forEach(s => {
+        const price = s.cost.split(' ')[1]
+        const formatPrice = parseFloat(price.replace(',', '.'))
+        if(s.type === "input") {
+            total += formatPrice
+        } else {
+            total -= formatPrice
+        }
+        finalBalance = total.toFixed(2).replace('.', ',')
+    });
     return (
         <TradesContainer>
             <ul>
-                <Trade type={type}>
-                    <span>data</span>
-                    <div>
-                        <p>{product}</p>
-                        <span>{value}</span>
-                    </div>
-                </Trade>
-                <Trade>
-                    <span>data</span>
-                    <div>
-                    <p>{product}</p>
-                    <span>{value}</span>
-                    </div>
-                </Trade>
-                {/* {statementList.map(s => <TradesPreview key={s.id} trade={s} />)} */}
+                {statementList.map(s => <TradesPreview key={s.id} trade={s}/>)}               
             </ul>
             <div>
                 <h3>SALDO</h3>

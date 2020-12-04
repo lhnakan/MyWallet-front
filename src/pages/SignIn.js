@@ -1,21 +1,33 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 import UserContext from '../context/UserContext';
 
 import Container from '../assets/styles/loginStyles/Container';
 
 export default function SignIn() {
-    const { setUserName } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
 
-    function login() {
-        
-        setUserName('Fulano')
-        alert("logando")
-        history.push('/statement')
+    function login(e) {     
+        e.preventDefault();
+
+        if (loading) return;
+        setLoading(true);
+
+        axios.post('http://localhost:3000/api/users/sign-in', {email, password})
+            .then(r => {
+                setUser(r.data);               
+                history.push('/statement');
+            })
+            .catch(err => {
+                console.log(err);
+                setLoading(false);
+            })
     }
     return(
         <Container>
