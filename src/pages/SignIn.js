@@ -3,15 +3,18 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import UserContext from '../context/UserContext';
-
 import Container from '../assets/styles/loginStyles/Container';
 
 export default function SignIn() {
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+
+    if(user){
+        history.push('/statement');
+    }
 
     function login(e) {     
         e.preventDefault();
@@ -29,7 +32,7 @@ export default function SignIn() {
                 setLoading(false);
             })
     }
-    
+
     return(
         <Container>
             <h1>MyWallet</h1>
