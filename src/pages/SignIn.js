@@ -19,7 +19,7 @@ export default function SignIn() {
         if (loading) return;
         setLoading(true);
 
-        axios.post('http://localhost:3000/api/users/sign-in', {email, password})
+        axios.post('https://git.heroku.com/mywallet-lucasn.git/sign-in', {email, password})
             .then(r => {
                 setUser(r.data);               
                 history.push('/statement');

@@ -19,7 +19,7 @@ export default function SignUp() {
             passwordConfirmation
         }    
 
-        axios.post('http://localhost:3000/api/users/sign-up', newUser)
+        axios.post('https://mywallet-lucasn.herokuapp.com/api/users/sign-up', newUser)
             .then((r) => {
                 history.push('/')
             })
