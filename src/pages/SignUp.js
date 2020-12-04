@@ -12,13 +12,13 @@ export default function SignUp() {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
-    function saveNewUser() {   
+    function saveNewUser(e) {   
         e.preventDefault();
 
         if (loading) return;
 
         setLoading(true);
-        
+
         const newUser = {
             username, 
             email, 
