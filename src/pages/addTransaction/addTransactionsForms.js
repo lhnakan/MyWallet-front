@@ -9,6 +9,10 @@ const Container = styled.div`
     * {
         border-radius: 5px;
     }
+
+    div {
+        display: flex;
+    }
 `;
 
 export default Container;

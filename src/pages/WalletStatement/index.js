@@ -1,22 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
 
 import UserContext from '../../context/UserContext';
-import FinancialContext from '../../context/FinancialContext';
 import BalanceContainer from "./WalletStatementForms";
 import Header from '../../components/Header';
 import StatementBox from '../../components/StatementBox';
 
 
 export default function WalletStatement() {
-    const { config } = useContext(UserContext);
-    const { statementList, setStatementList } = useContext(FinancialContext)
-    
-    const [loading, setLoading] = useState(false);
-    const history = useHistory();
-
+    const { config, statementList, setStatementList } = useContext(UserContext);
     
     useEffect (() => {
         axios.get('http://localhost:3000/api/transactions', config)
@@ -29,13 +23,14 @@ export default function WalletStatement() {
 
     }, [])
 
-    
-
     return (
         <BalanceContainer>
             <Header />
                         
-            {statementList ? <StatementBox /> : <div><span>Nao ha registros de entrada ou saida</span></div>}
+            {statementList 
+                ? <StatementBox /> 
+                : <div><span>Nao ha registros de entrada ou saida</span></div>
+            }
             
             <footer>
                 <Link to={'/add-received'}>

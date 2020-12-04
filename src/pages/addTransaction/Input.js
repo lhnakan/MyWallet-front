@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import DatePicker from 'react-datepicker';
+
+
 
 import Container from "./addTransactionsForms";
 import UserContext from '../../context/UserContext';
@@ -9,16 +12,17 @@ export default function Input() {
     const { config } = useContext(UserContext);
     const [cost, setCost] = useState('');
     const [item, setItem] = useState('');
+    const [selectDate, setSelectDate] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
-
+   
     function save(e) {     
         e.preventDefault();
 
         if (loading) return;
         setLoading(true);
 
-        axios.post('http://localhost:3000/api/transactions/input', {item, cost}, config)
+        axios.post('http://localhost:3000/api/transactions/input', {item, cost, selectDate}, config)
             .then(() => {
                 history.push('/statement');
             })
@@ -42,8 +46,14 @@ export default function Input() {
                     type='text' 
                     placeholder='Descricao' 
                     onChange={e => setItem(e.target.value)} 
-                    value={item}  
+                    value={item}
                 />
+                <input 
+                    type='date' 
+                    placeholder='Data' 
+                    onChange={e => setSelectDate(e.target.value)} 
+                    value={selectDate}
+                />                
                 <button>Salvar entrada</button>
             </form>
         </Container>

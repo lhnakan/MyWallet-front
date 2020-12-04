@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import FinancialContext from '../../context/FinancialContext';
+import UserContext from '../../context/UserContext';
 import { TradesContainer } from './StatementBoxForms';
 
 import TradesPreview from '../TradesPreview';
 
 export default function StatementBox() {    
-    const { statementList } = useContext(FinancialContext);
+    const { statementList } = useContext(UserContext);
 
     let finalBalance = 0;
     let total = 0;
@@ -20,13 +20,13 @@ export default function StatementBox() {
         finalBalance = total.toFixed(2).replace('.', ',')
     });
     return (
-        <TradesContainer>
+        <TradesContainer total={total}>
             <ul>
                 {statementList.map(s => <TradesPreview key={s.id} trade={s}/>)}               
             </ul>
             <div>
                 <h3>SALDO</h3>
-                <p>R$ {finalBalance}</p>
+                <span>R$ {finalBalance}</span>
             </div>
         </TradesContainer>
     );

@@ -6,6 +6,7 @@ export default UserContext;
 
 export function UserProvider({ children }) {
     const [user, setUser] = useLocalStorage('user', null);
+    const [statementList, setStatementList] = useState(false);
     
     
     let config;
@@ -17,7 +18,7 @@ export function UserProvider({ children }) {
         };
     }
     return (
-        <UserContext.Provider value={{ user, setUser, config }}>
+        <UserContext.Provider value={{ user, setUser, config, statementList, setStatementList }}>
             { children }
         </UserContext.Provider>
     );

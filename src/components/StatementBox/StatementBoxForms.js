@@ -16,6 +16,10 @@ export const TradesContainer = styled.main`
         display: flex;
         justify-content: space-between;
         width: 100%;
+
+        span{
+            color: ${({ total }) => (total >= 0 ? 'green' : 'red' )}
+        }
     }    
 
     ul {
