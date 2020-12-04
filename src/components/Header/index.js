@@ -16,7 +16,7 @@ export default function Header() {
         if (loading) return;
         setLoading(true);
 
-        axios.post('http://localhost:3000/api/users/sign-out', null, config)
+        axios.post('https://mywallet-lucasn.herokuapp.com/api/users/sign-out', null, config)
             .then(() => {          
                 history.push('/');
             })

@@ -18,7 +18,7 @@ export default function Input() {
         if (loading) return;
         setLoading(true);
 
-        axios.post('http://localhost:3000/api/transactions/output', {item, cost}, config)
+        axios.post('https://mywallet-lucasn.herokuapp.com/api/transactions/output', {item, cost}, config)
             .then(r => {
                 history.push('/statement');
             })

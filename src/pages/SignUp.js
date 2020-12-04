@@ -9,9 +9,16 @@ export default function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [loading, setLoading] = useState(false);
     const history = useHistory();
 
     function saveNewUser() {   
+        e.preventDefault();
+
+        if (loading) return;
+
+        setLoading(true);
+        
         const newUser = {
             username, 
             email, 
