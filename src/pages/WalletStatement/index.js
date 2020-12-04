@@ -12,16 +12,16 @@ import StatementBox from '../../components/StatementBox';
 export default function WalletStatement() {
     const { config, statementList, setStatementList } = useContext(UserContext);
     
-    // useEffect (() => {
-    //     axios.get('http://localhost:3000/api/transactions', config)
-    //         .then(r => {
-    //             setStatementList(r.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
+    useEffect (() => {
+        axios.get('https://mywallet-lucasn.herokuapp.com/api/transactions', config)
+            .then(r => {
+                setStatementList(r.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
 
-    // }, [])
+    }, [])
 
     return (
         <BalanceContainer>
