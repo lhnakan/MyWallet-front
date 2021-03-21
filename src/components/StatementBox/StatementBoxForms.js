@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TradesContainer = styled.main`
+const TradesContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@ export const TradesContainer = styled.main`
         width: 100%;
 
         span{
-            color: ${({ total }) => (total >= 0 ? 'green' : 'red' )}
+            color: ${({ total }) => (total >= 0 ? 'green' : 'red')}
         }
     }    
 
@@ -28,3 +28,4 @@ export const TradesContainer = styled.main`
     }
 `;
 
+export default TradesContainer;

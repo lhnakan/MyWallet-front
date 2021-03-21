@@ -9,7 +9,7 @@ const Trade = styled.li`
         margin-left: 5px;
 
         span {
-            color: ${({ type }) => (type === "input" ? 'green' : 'red' )}
+            color: ${({ type }) => (type === 'input' ? 'green' : 'red')}
         }
     }
 `;
