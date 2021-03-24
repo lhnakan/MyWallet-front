@@ -36,10 +36,8 @@ export default function SignIn() {
     if (data.success) {
       setUser(data.success);
       history.push('/statement');
-
     } else if (data.response.status === 401) {
       setWarning('E-mail ou senha incorretos');
-
     } else {
       setWarning('Erro no servidor, por favor tente novamente mais tarde');
     }
