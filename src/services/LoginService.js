@@ -15,7 +15,7 @@ class LoginService {
     
   async signIn(userData) {
     try {
-      const { data } = await api.post('/users/signin', userData);
+      const { data } = await api.post('/users/sign-in', userData);
       if (data) {
         return { success: data };
       }
