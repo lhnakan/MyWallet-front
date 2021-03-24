@@ -1,6 +1,6 @@
-const API_DEV_URL="http://localhost:4000/api"
+const API_DEV_URL = 'http://localhost:4000/api';
 
-const API_PROD_URL="";
+const API_PROD_URL = '';
 
 const PRODUCTION = false;
 

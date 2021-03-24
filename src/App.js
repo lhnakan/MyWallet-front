@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import 'regenerator-runtime/runtime';
 import { UserProvider } from './context/UserContext';
 import GlobalStyle from './assets/styles/globals';
 import SignIn from './pages/SignIn';
