@@ -1,26 +1,33 @@
-import React, { useContext } from 'react';
-import UserContext from '../../context/UserContext';
+import React, { useState, useEffect } from 'react';
 import TradesContainer from './StatementBoxForms';
 
 import TradesPreview from '../TradesPreview';
 
-export default function StatementBox() {    
-  const { statementList } = useContext(UserContext);
+export default function StatementBox({ statementList }) {
+  const [finalBalance, setFinalBalance] = useState('0,00');
+  const [status, setStatus] = useState('positive');
 
-  let finalBalance = 0;
-  let total = 0;
-  statementList.forEach((s) => {
-    const price = s.cost.split(' ')[1];
-    const formatPrice = parseFloat(price.replace(',', '.'));
-    if (s.type === 'input') {
-      total += formatPrice;
-    } else {
-      total -= formatPrice;
-    }
-    finalBalance = total.toFixed(2).replace('.', ',');
-  });
+  useEffect(() => {
+    let total = 0;
+
+    statementList.forEach((s) => {
+      const price = s.cost.split(' ')[1];
+      const formatPrice = parseFloat(price.replace(',', '.'));
+      if (s.type === 'input') {
+        total += formatPrice;
+      } else {
+        total -= formatPrice;
+      }
+    });
+    if (total < 0) setStatus('negative');
+
+    const updatedTotal = total.toFixed(2).replace('.', ',');
+
+    setFinalBalance(updatedTotal);
+  }, [statementList]);
+
   return (
-    <TradesContainer total={total}>
+    <TradesContainer status={status}>
       <ul>
         {statementList.map((s) => <TradesPreview key={s.id} trade={s} />)}               
       </ul>
