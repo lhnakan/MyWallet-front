@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Colors from '../../config/colors';
 
 const TradesContainer = styled.main`
     display: flex;
@@ -18,7 +19,7 @@ const TradesContainer = styled.main`
         width: 100%;
 
         span{
-            color: ${({ total }) => (total >= 0 ? 'green' : 'red')}
+            color: ${({ status }) => ((status !== 'negative') ? `${Colors.green}` : `${Colors.red}`)}
         }
     }    
 

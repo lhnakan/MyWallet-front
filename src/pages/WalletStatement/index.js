@@ -1,24 +1,26 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { AiOutlineMinusCircle, AiOutlinePlusCircle } from 'react-icons/ai';
-
+import StatementService from '../../services/StatementService';
 import UserContext from '../../context/UserContext';
 import BalanceContainer from './WalletStatementForms';
 import Header from '../../components/Header';
 import StatementBox from '../../components/StatementBox';
 
 export default function WalletStatement() {
-  const { config, statementList, setStatementList } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const [statementList, setStatementList] = useState();
     
-  useEffect(() => {
-    axios.get('http://localhost:4000/api/transactions', config)
-      .then((r) => {
-        setStatementList(r.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  useEffect(async () => {
+    if (user) {
+      const data = await StatementService.getAll(user.token);
+
+      if (data.success) {
+        setStatementList(data.success);
+      } else {
+        alert('Erro ao carregar extrato da conta, tente novamente mais tarde');
+      }
+    }
   }, []);
 
   return (
@@ -26,18 +28,18 @@ export default function WalletStatement() {
       <Header />
                         
       {statementList 
-        ? <StatementBox /> 
+        ? <StatementBox statementList={statementList} /> 
         : <div><span>Nao ha registros de entrada ou saida</span></div>}
             
       <footer>
         <Link to="/add-received">
-          <button>
+          <button type="submit">
             <AiOutlinePlusCircle size="25px" />
             Nova entrada
           </button>
         </Link>
         <Link to="/add-spent">
-          <button>
+          <button type="submit">
             <AiOutlineMinusCircle size="25px" />
             Nova saida
           </button>
